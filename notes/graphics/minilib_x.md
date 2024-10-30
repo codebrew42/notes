@@ -25,8 +25,9 @@ https://harm-smits.github.io/42docs/libs/minilibx
 - XOpenDisplay("") : open, free if fails
 - assgin val to...
 	t_xvar->screen/root/cmap/deapth/win_list/loop_hoop/loop_param/do_flush_wm_delete_window/wm_
+- return val : can be saved to "void *mlx_connection"
 
-## 1-1. XOpenDisplay()
+### 1-1. XOpenDisplay()
 ### def
 - provides a low-level C prog interface to interact with the X window system
 - returns display
@@ -43,16 +44,31 @@ https://harm-smits.github.io/42docs/libs/minilibx
 	if fails, returns NULL
 	indicates issue with the DISPLAY env var
 
-## 2. mlx_destroy_desplay(mlx_ptr)#
-### def
-- to free
-
-
-## 3. mlx_new_window(t_xvar *xvar, int size_x, int size_y, char *title)
+## 2. mlx_new_window(t_xvar *xvar, int size_x, int size_y, char *title)
 - title : title of the window?
+- return val : saved to "void *window1", "void *window2"...
 
-## 4. mlx_loop(mlx_connection)
+- example
+	void *window1;
+
+	window1 = mlx_new_window(); mlx_ptr: size_x: size_y: title:
+	if (NULL = window1)
+		mlx_destroy_display(mlx_connection); mlx_ptr;
+		free(mlx_connection); ptr;
+		return (MALLOC_ERROR);
+	
+
+
+## 3. mlx_loop(mlx_connection)
 ### def
 - keeps the prog alive
 - thanks to the loop, can see the window
 - can have multiple windows
+
+## 4. mlx_destroy_window()
+### char
+- can have multiple windows
+
+## 5. mlx_destroy_display()
+
+## 6. free()
