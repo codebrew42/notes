@@ -1,0 +1,13 @@
+# 241025
+## practice
+- sha256 hash
+- /files vs files
+## concept
+- malicious compiler prog
+
+
+# 241027
+##practice
+-bigzip
+	grep -rn "picoCTF"
+	ls -R > output.txt
