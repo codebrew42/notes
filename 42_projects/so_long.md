@@ -16,8 +16,8 @@ https://github.com/overbound/SonicTimeTwisted
 ## directly related
 https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 
-# plan
-## by cursor
+# guide
+## version1
 To analyze the structure of the provided codebase and outline the steps involved in its operation, we can break it down into several key components and processes. The code appears to be a game, likely a variant of Pac-Man, implemented in C using the MiniLibX library for graphics. Here’s a structured analysis:
 
 ### 1. **File Structure Overview**
@@ -79,8 +79,116 @@ To analyze the structure of the provided codebase and outline the steps involved
 ### Conclusion
 This codebase represents a structured approach to developing a 2D game using C, with clear separation of concerns through the use of multiple source files and header files. The game loop and event handling are central to the gameplay experience, while the Makefile facilitates easy compilation and management of the project.
 
+## version 2
+The code you've provided is a simple game called "so_long," which is built using the MinilibX graphics library. The game involves navigating a player character through a map, collecting items, and reaching an exit. Below is an analysis of the structure of the program, along with steps to code a simplified version.
 
-### 1. Where is `t_game` Defined?
+### Structure of the Program
+
+1. **Header Files**:
+   - **`mlx.h`**: Contains declarations for the MinilibX graphics library functions.
+   - **`so_long.h`**: Contains the main game structure and function declarations.
+   - **`get_next_line.h`**: Contains declarations for reading lines from a file.
+
+2. **Source Files**:
+   - **`game_logic/*.c`**: Contains the core game logic, including:
+     - **`map.c`**: Handles reading the map from a file and storing it in memory.
+     - **`errors.c`**: Validates the map structure and checks for errors.
+     - **`controls.c`**: Handles player movement and controls.
+     - **`graphics.c`**: Manages rendering images to the window.
+     - **`so_long.c`**: The main entry point of the program, initializes the game and starts the loop.
+
+3. **Utility Files**:
+   - **`get_next_line/*.c`**: Implements functions to read a line from a file, which is used to read the game map.
+
+4. **Makefile**: Automates the build process, compiling the source files and linking them with the MinilibX library.
+
+5. **Game Map**: A text file (`map1.ber`) that defines the layout of the game, including walls, the player, collectables, and the exit.
+
+### Steps to Code a Simplified Version
+
+1. **Define the Game Structure**:
+   - Create a structure to hold game state information (e.g., player position, map data).
+
+2. **Initialize the Graphics Library**:
+   - Set up the MinilibX library to create a window for the game.
+
+3. **Load the Game Map**:
+   - Implement a function to read the map from a file and store it in a suitable data structure (e.g., a 2D array).
+
+4. **Render the Game**:
+   - Create a function to draw the game elements (walls, player, collectables, exit) on the screen.
+
+5. **Handle Player Input**:
+   - Implement functions to respond to keyboard inputs for moving the player character.
+
+6. **Check for Game Conditions**:
+   - Add logic to check if the player has collected all items and reached the exit.
+
+7. **Clean Up Resources**:
+   - Ensure that all allocated memory is freed and the window is closed when the game ends.
+
+### Example Code Structure
+
+Here’s a simplified version of how you might structure the code:
+
+```c
+// main.c
+#include "so_long.h"
+
+int main(int argc, char **argv) {
+    // Initialize game state
+    // Load map
+    // Initialize graphics
+    // Game loop
+    // Handle input
+    // Render graphics
+    // Clean up
+    return 0;
+}
+
+// so_long.h
+#ifndef SO_LONG_H
+#define SO_LONG_H
+
+#include <mlx.h>
+
+typedef struct s_game {
+    void *mlx_ptr;
+    void *win_ptr;
+    char **map;
+    int player_x;
+    int player_y;
+    // Other game state variables
+} t_game;
+
+void load_map(t_game *game, const char *filename);
+void render(t_game *game);
+void handle_input(t_game *game, int keycode);
+
+#endif
+
+// game.c
+#include "so_long.h"
+
+void load_map(t_game *game, const char *filename) {
+    // Read the map from the file and store it in game->map
+}
+
+void render(t_game *game) {
+    // Draw the map and player on the window
+}
+
+void handle_input(t_game *game, int keycode) {
+    // Update player position based on input
+}
+```
+
+### Summary
+
+To create a simplified version of the "so_long" game, focus on the core functionalities: initializing the graphics, loading the map, rendering the game state, handling player input, and checking game conditions. Start with a basic structure and gradually add features as you become more comfortable with the code.
+
+
+# 1. Where is `t_game` Defined?
 
 The `t_game` structure is defined in the `game.h` header file. Here’s a brief overview of its definition:
 
@@ -127,7 +235,7 @@ typedef struct s_game
   - `redraw`: A flag indicating whether the game screen needs to be redrawn.
   - `g_rate`: Controls the speed of the game.
 
-### 2. What is a Sprite?
+# 2. What is a Sprite?
 
 A **sprite** is a two-dimensional image or animation that is integrated into a larger scene, often used in video games to represent characters, objects, or other visual elements. Sprites can be static images or animated sequences that change over time to create the illusion of movement.
 
