@@ -1,0 +1,3 @@
+[submodule "others_ThisIsAlgorithm"]
+	path = others_ThisIsAlgorithm
+	url = https://github.com/sean-lab/ThisIsAlgorithm.git
