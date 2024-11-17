@@ -72,3 +72,26 @@ https://harm-smits.github.io/42docs/libs/minilibx
 ## 5. mlx_destroy_display()
 
 ## 6. free()
+
+# 4. put_image_to_window()
+## how it works
+- save image to a file
+- read image file
+- put image to window
+
+## 5. mlx_xpm_file_to_image()
+### how it works
+The `mlx_xpm_file_to_image` function processes the pixel data from the XPM file and converts it into a format that can be used by the MiniLibX library for rendering. 
+1. **Load Image from File**: The function reads the contents of the specified XPM file.
+
+2. **File Descriptor (fd)**: It opens the file using a file descriptor, which is a low-level way to access files in C. This allows the function to read the pixel data directly from the file.
+
+3. **Process Pixel Data**: The function processes the pixel data from the XPM file, converting it into a format that the MiniLibX can use. This typically involves interpreting the color values and arranging them in a way that can be rendered on the screen.
+
+4. **Save to Memory**: The processed image data is then allocated in memory. The function creates an image structure that holds this data.
+
+5. **Return Pointer**: Finally, the function returns a pointer to the created image structure. This pointer can be used to reference the image in subsequent rendering calls.
+
+## example
+	game->image.floor = mlx_xpm_file_to_image(game->p_mlx,
+			"images/floor.xpm", &i, &j);

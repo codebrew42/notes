@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/jin1/coding/notes.git/others_ThisIsAlgorithm/09_graphs/Graph",
+      "program": "/Users/jin1/coding/notes.git/others_ThisIsAlgorithm/09_graphs/Graph/build/Debug/outDebug"
+    }
+  ]
+}
