@@ -18,6 +18,10 @@ The C compilation process involves multiple stages that transform source code in
 - Takes assembly code (.S files)
 - Converts assembly into machine code
 - Produces object files (.o)
+```bash
+	gcc -c code.c -o code.o
+	gcc -c code.c #same result, named after code > "code.o"
+```
 
 4. **Linker** (gcc -o)
 - Combines multiple object files
