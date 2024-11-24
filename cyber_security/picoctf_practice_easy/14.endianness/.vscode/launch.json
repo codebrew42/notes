@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/jin1/coding/proj_and_notes/notes.git/cyber_security/picoctf_practice_easy/14.endianness",
+      "program": "/Users/jin1/coding/proj_and_notes/notes.git/cyber_security/picoctf_practice_easy/14.endianness/build/Debug/outDebug"
+    }
+  ]
+}
