@@ -12,4 +12,4 @@ OBJ : $(SRC:.c=.o)
 	cc  -c $< -o $@
 
 clean: 
-	rm -f $(OBJ)
+	rm -f $(OBJ) code1
