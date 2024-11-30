@@ -3,7 +3,6 @@
 ## definition
 - In simple terms, a **timestamp** in Make and Makefiles is a record that shows when a file was last changed. Make uses these timestamps to check if a file that needs to be created (like a program or a part of a program) is current compared to the files it depends on (the files it needs to work).
 
-
 ### How Timestamps Work in Make
 
 1. **Checking Dependencies**: 
