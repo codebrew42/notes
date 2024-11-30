@@ -1,18 +1,10 @@
-# when a key set is given
-- use arr
-- use arr.index(char) : and find the first occurance
 
-## code-example
-```python
-print("lower 'a': ", ord('a'))
-print("lower 'A': ", ord('A'))
-
-def	decode(text):
+def	substitute(input):
 	output = []
 	arr1 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	arr2 = "OHNFUMWSVZLXEGCPTAJDYIRKQB"
 	arr3 = "ohnfumwsvzlxegcptajdyirkqb"
-	for char in text:
+	for char in input:
 		if char.isalpha():
 			if char.isupper():
 				output.append(arr1[arr2.index(char)])
@@ -23,7 +15,5 @@ def	decode(text):
 	return ''.join(output)
 
 input = "Dsu mxow vj: pvncNDM{5YH5717Y710G_3I0XY710G_03055505}"
-#input = "Suauypcg Xuwaogf oacju, rvds o waoiu ogf jdoduxq ova."
-output = decode(input)
+output = substitute(input)
 print("decoded: ", output)
-```
