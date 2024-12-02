@@ -62,7 +62,7 @@ res_dict['A'] = 'u'
 res_dict['a'] = 'u'
 res_dict['E'] = 'G'
 res_dict['e'] = 'g'
-res_dict['M'] = 'M'
+res_dict['U'] = 'M'
 res_dict['u'] = 'm'
 res_dict['D'] = 'R'
 res_dict['d'] = 'r'
@@ -76,6 +76,11 @@ res_dict['H'] = 'B'
 res_dict['h'] = 'b'
 res_dict['O'] = 'K'
 res_dict['o'] = 'k'
+res_dict['C'] = 'W'
+res_dict['c'] = 'w'
+res_dict['Z'] = 'X'
+res_dict['z'] = 'x'
+
 def	add_notalpha(src, dest):
 	for key in src:
 		if key not in dest:
