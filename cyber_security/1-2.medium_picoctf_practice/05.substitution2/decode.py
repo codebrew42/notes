@@ -42,19 +42,40 @@ res_dict['J'] = 'E'
 res_dict['j'] = 'e'
 res_dict['F'] = 'T'
 res_dict['f'] = 't'
-res_dict['G'] = 'A'
-res_dict['g'] = 'a'
-res_dict['S'] = 'N'
-res_dict['s'] = 'n'
-res_dict['X'] = 'S'
-res_dict['x'] = 's'
-res_dict['D'] = 'H'
-res_dict['d'] = 'h'
-res_dict['N'] = 'R'
-res_dict['n'] = 'r'
-res_dict['W'] = 'd'
-res_dict['w'] = 'd'
+res_dict['G'] = 'N'
+res_dict['g'] = 'n'
+res_dict['S'] = 'S'
+res_dict['s'] = 's'
+res_dict['X'] = 'A'
+res_dict['x'] = 'a'
+res_dict['D'] = ' '
+res_dict['d'] = ' '
+res_dict['N'] = 'H'
+res_dict['n'] = 'h'
+res_dict['W'] = 'L'
+res_dict['w'] = 'l'
+res_dict['P'] = 'V'
+res_dict['p'] = 'v'
+res_dict['I'] = 'Q'
+res_dict['i'] = 'q'
+res_dict['A'] = 'u'
+res_dict['a'] = 'u'
+res_dict['E'] = 'G'
+res_dict['e'] = 'g'
+res_dict['M'] = 'M'
+res_dict['u'] = 'm'
+res_dict['D'] = 'R'
+res_dict['d'] = 'r'
 
+res_dict['T'] = 'Y'
+res_dict['t'] = 'y'
+res_dict['Y'] = 'D'
+res_dict['y'] = 'd'
+
+res_dict['H'] = 'B'
+res_dict['h'] = 'b'
+res_dict['O'] = 'K'
+res_dict['o'] = 'k'
 def	add_notalpha(src, dest):
 	for key in src:
 		if key not in dest:
@@ -76,6 +97,26 @@ def decode(input):
 			output += char  # Keep the original character if not in res_dict
 	return output  # Return the decoded output
 
+def	check_successive(input):
+	output = ""
+	i = 0
+	while i < len(input):
+		if i < len(input) - 1 and input[i] == input[i + 1]:
+			i += 2
+		else:
+			if input[i] not in output:
+				output += input[i]
+			i += 1
+	return output
+
+single_char = check_successive(input)
+print("single: ", single_char)
+
 str = "vqkmKFL{G6D4U_4G41T515_15_73Y10A5_42JX1770}"
 result = decode(str)
 print(result)
+
+print("last str: ")
+for chr in input:
+	print(res_dict[chr], end='')
+print()
