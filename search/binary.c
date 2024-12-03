@@ -10,49 +10,48 @@ int	binary_search(int *arr, int size, int target)
 
 	left = 0;
 	right = size - 1;
-	count = 0;
+	count = 1;
 	while (left <= right)
 	{
 		mid = left + (right - left) / 2; //int
 		if (target == arr[mid])
 		{
-			printf("(count: %d) target '%d' found", count, target);
+			printf("\n(count: %d) target '%d' found", count, target);
 			return (0);
 		}
-		else if (target < arr[mid])
+		else if (target > arr[mid])
 			left = mid + 1;
 		else
 			right = mid - 1;
+		printf("\n(count: %d) target '%d' not found", count, target);
 		count++;
 	}
 	return (-1);
 }
-
-int	*bubble_sort(int arr[], int size)
+//	idx	 : 0 1 2 3 4
+//size 5 : a b c d e
+void	bubble_sort(int arr[], int size)
 {
 	int	i;
 	int	j;
-	int	temp;
-	int	*res;
+	int	tmp;
 
-	res = arr;
 	i = 0;
-	while(i < size - 1)
+	while (i < size - 1)
 	{
 		j = 0;
-		while(j < size - i - 1)
+		while (j < size - 1 - i)
 		{
-			if (res[j] > res[j+1])
+			if (arr[j] > arr[j + 1])
 			{
-				temp = res[j];
-				res[j] = res[j+1];
-				res[j+1] = temp;
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
 			}
 			j++;
 		}
 		i++;
 	}
-	return (res);
 }
 
 void	print_arr(int *arr)
@@ -79,8 +78,11 @@ int	main()
 		arr[i] = rand() % 100;
 	}
 	// bubble sort
-	bubble_sort(arr, 20);
+	printf("before buble sort: \n");
 	print_arr(arr);
-	binary_search(arr, 20, arr[5]);
+	bubble_sort(arr, 20);
+	printf("\n\nafter buble sort: \n");
+	print_arr(arr);
+	binary_search(arr, 20, arr[0]);
 	return (0);
 }
