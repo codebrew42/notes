@@ -31,9 +31,17 @@ def rev_shift(c, k):
 	t2 = ord(k) + LOWERCASE_OFFSET
 	return ALPHABET[t1 - t2]
 
+#fix this!
 def rev_b16_encode(res):
 	input = ""
 	for c in res:
+		str1 = ""
+		str2 = ""
+		i = 0
+		for i >= 0 and i <= 3:
+			str1 += c[i]
+		for i >= 4 and i <= 7:
+			str2 += c[i]
 
 # (Wrap with picoCTF{}) 
 # dcebcmebecamcmanaedbacdaanafagapdaaoabaaafdbapdpaaapadanandcafaadbdaapdpandcac
