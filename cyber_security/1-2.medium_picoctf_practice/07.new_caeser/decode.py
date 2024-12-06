@@ -2,8 +2,11 @@ import string
 
 LOWERCASE_OFFSET = ord("a")
 ALPHABET = string.ascii_lowercase[:16]
+ALPHABET2 = string.ascii_lowercase[:16] + string.ascii_lowercase[:16]
+print(f"alphabet2 : {ALPHABET2}")
 
 print("ALPHABET: ", ALPHABET)
+print("ALPHABET2: ", ALPHABET2)
 
 def b16_encode(plain):
 	enc = ""
@@ -13,30 +16,24 @@ def b16_encode(plain):
 		enc += ALPHABET[int(binary[4:], 2)]
 	return enc
 
-
-def b16_decode(bin):
-	res = ""
-	res = int(bin, 2)
-	return res
-
 def shift(c, k):
 	t1 = ord(c) + LOWERCASE_OFFSET
 	t2 = ord(k) + LOWERCASE_OFFSET
-	return ALPHABET[(t1 + t2) % len(ALPHABET)]
+	return ALPHABET[t1 + t2]
 
 flag = "givenstr"
 key = "a"
 assert all([k in ALPHABET for k in key])
 assert len(key) == 1
 
+def rev_shift(c, k):
+	t1 = ord(c) + ord(c) + LOWERCASE_OFFSET
+	t2 = ord(k) + LOWERCASE_OFFSET
+	return ALPHABET[t1 - t2]
 
-enc = "dcebcmebecamcmanaedbacdaanafagapdaaoabaaafdbapdpaaapadanandcafaadbdaapdpandcac"
-print("encrypted: ", enc)
-
-for i, c in enumerate(enc):
-	enc += shift(c, key[i % len(key)])
-dec = ""
-dec = b16_decode(enc)
+def rev_b16_encode(res):
+	input = ""
+	for c in res:
 
 # (Wrap with picoCTF{}) 
 # dcebcmebecamcmanaedbacdaanafagapdaaoabaaafdbapdpaaapadanandcafaadbdaapdpandcac
