@@ -29,7 +29,25 @@ print(f"1st ALPHABET[{int(binary[:4], 2)}] added: {enc}")
 enc += ALPHABET[int(binary[4:], 2)]
 print(f"2nd ALPHABET[{int(binary[4:], 2)}] added: {enc}")
 print("---------------------------------------------------")
+print(f"ALPAH[0]: {ALPHABET[0]}")
 
+bin_val = int(format(ord("a"), '08b'), 2)
+
+print(f"bin_val : {bin_val}")
+print(f"bin_val * 2 : {bin_val << 4}")
+
+print("---------------------------------------------------")
+given_ex = "gb"
+i = ALPHABET.index(given_ex[0])
+j = ALPHABET.index(given_ex[1])
+
+print(f"idx \"i\": {i}")
+print(f"idx \"j\": {j}")
+print(f"idx \"j * 16 + j\": {i * 16 + j}")
+
+print(f"idx \"chr(i * 16 + j)\": {chr(i * 16 + j)}")
+
+print("---------------------------------------------------")
 
 def shift(c, k):
 	c_idx = ord(c) - LOWERCASE_OFFSET
@@ -57,15 +75,22 @@ def rev_shift(c, k):
 
 
 
-key = ALPHABET[1] #0 to len.ALPHABET
+key = ALPHABET[15] #0 to len.ALPHABET "af"
 encoded = "dcebcmebecamcmanaedbacdaanafagapdaaoabaaafdbapdpaaapadanandcafaadbdaapdpandcac5"
+print(f"len_encoded: {len(encoded)}")
+print("---------------------------------------------------")
+
 decoded_1 = ""
 for i, c in enumerate(encoded):
 	decoded_1 += rev_shift(c, key)
 print(f"decoded_1: {decoded_1}")
-ascii_str = ""
-
-
+print("decoded_2: ")
+for i in range(0, len(decoded_1), 2):
+	if i + 1 < len(decoded_1):
+		first_i = ALPHABET.index(decoded_1[i])
+		second_i = ALPHABET.index(decoded_1[i+1])
+		res = first_i * 16 + second_i
+		print(chr(res), end = '')
 
 ## to test
 
@@ -85,26 +110,11 @@ ascii_str = ""
 # decoded_2 += ascii_str
 # print("decoded_2: ", decoded_2)
 
-#fix this!
-def rev_b16_encode(encoded):
-    # Process pairs of characters
-    decoded = ""
-    for i in range(0, len(encoded), 2):
-        # Get indices of pair of characters
-        first_idx = ALPHABET.index(encoded[i])
-        second_idx = ALPHABET.index(encoded[i + 1])
-        
-        # Reconstruct the binary string
-        binary = "{:04b}{:04b}".format(first_idx, second_idx)
-        
-        # Convert binary back to character
-        decoded += chr(int(binary, 2))
-    
-    return decoded
 
-decoded_2 =""
-decoded_2 = rev_b16_encode(decoded_1)
-print(f"decoded_2: {decoded_2}")
 
-# (Wrap with picoCTF{}) 
-# dcebcmebecamcmanaedbacdaanafagapdaaoabaaafdbapdpaaapadanandcafaadbdaapdpandcac5
+# decoded_2 =""
+# decoded_2 = rev_b16_encode(decoded_1)
+# print(f"decoded_2: {decoded_2}")
+
+# (picoCTF{???????}) 
+	 # dcebcmebecamcmanaedbacdaanafagapdaaoabaaafdbapdpaaapadanandcafaadbdaapdpandcac5

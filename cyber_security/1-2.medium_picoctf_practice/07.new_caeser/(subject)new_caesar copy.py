@@ -2,14 +2,15 @@ import string
 
 LOWERCASE_OFFSET = ord("a")
 ALPHABET = string.ascii_lowercase[:16]
+#ALPHABET = "abcdefg..p" [0] - [15] = 16개
 
-def b16_encode(input):
+def b16_encode(input): #
 	enc = ""
 	for c in input:
-		binary = "{0:08b}".format(ord(c))
-		enc += ALPHABET[int(binary[:4], 2)]
-		enc += ALPHABET[int(binary[4:], 2)]
-	return enc
+		binary = "{0:08b}".format(ord(c)) #0111 1101
+		enc += ALPHABET[int(binary[:4], 2)] #ret = "0111" -> set[0111 = 7] => h
+		enc += ALPHABET[int(binary[4:], 2)] #ret = "1101" -> set[13] => n
+	return enc # "hn"
 
 def shift(c, k):
 	c_idx = ord(c) - LOWERCASE_OFFSET
@@ -17,7 +18,7 @@ def shift(c, k):
 	return ALPHABET[(c_idx + k_idx) % len(ALPHABET)] #len(ALPHABET) = 16
 
 to_encode = "redacted"
-key = "redacted"
+key = "redacted" #"a"
 assert all([k in ALPHABET for k in key])
 assert len(key) == 1
 

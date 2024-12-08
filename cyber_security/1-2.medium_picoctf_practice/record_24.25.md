@@ -11,3 +11,7 @@
 ## 07.new_caeser
 - 241202 (ING - difficult)
 - from encoding code & encoded string : figure out decoding procedure and the secret msg
+
+- 241207 (ING - still difficult)
+	- convert indexes to a char
+	- iterating two chars each of a string
