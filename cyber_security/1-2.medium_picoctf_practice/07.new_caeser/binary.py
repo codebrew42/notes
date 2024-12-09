@@ -23,3 +23,23 @@ formatted2 = "{} is my name".format(name)
 
 print("\n", formatted1)
 print(formatted2)
+print("-----------------------------------")
+
+
+to_decode = "dcebcmebecamcmanaedbacdaanafagapdaaoabaaafdbapdpaaapadanandcafaadbdaapdpandcac"
+ALPHA = string.ascii_lowercase[:16]
+
+def decode(to_decode):
+	res_to_str = ""
+	for i in range(0, len(to_decode), 2):
+		if i + 1 >= len(to_decode):
+			break
+		first = ALPHA.index(to_decode[i])
+		second = ALPHA.index(to_decode[i+1])
+		res = "{0:04b}{1:04b}".format(first, second)
+		res_to_str += chr(int(res, 2))
+	return res_to_str
+
+input = "abaa"
+result = decode(input)
+print(f"{result}")
