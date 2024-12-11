@@ -1,23 +1,23 @@
 import string
 
 LOW_OFFSET = ord("a")
-ALPHA = string.ascii_lowercase[:16]
+ALPHA = string.ascii_lowercase[:16] #ALPHA = "abcd...p"
 
-def		b16_encode(input):
+def		b16_encode(input): #"a"
 	enc = ""
 	for c in input:
-		binary = "{0:08b}".format(ord(c))
-		enc += ALPHA[int(binary[:4], 2)]
-		enc += ALPHA[int(binary[4:], 2)]
-	return enc
+		binary = "{0:08b}".format(ord(c)) #ord("a") = 97 = 0110 0001
+		enc += ALPHA[int(binary[:4], 2)] #"g"
+		enc += ALPHA[int(binary[4:], 2)] #"b"
+	return enc #gb
 
-def		shift(str, k):
+def		shift(str, k): #"b" = 1 
 	res = ""
 	idx_k = ord(k) - LOW_OFFSET
 	for c in str:
 		idx_c = ord(c) - LOW_OFFSET
 		res += ALPHA[(idx_c + idx_k) % len(ALPHA)]
-	return res
+	return res #"hc"
 
 #to test : properly encoded
 print(shift(b16_encode("a"), "p"))
