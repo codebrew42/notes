@@ -15,3 +15,9 @@
 - 241207 (ING - still difficult)
 	- convert indexes to a char
 	- iterating two chars each of a string
+
+## 08.format_str1
+-can't
+
+## 09.Bit-O-Asm1
+- 241220 solved

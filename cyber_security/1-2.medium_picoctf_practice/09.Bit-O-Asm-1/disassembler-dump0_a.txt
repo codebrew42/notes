@@ -1,0 +1,145 @@
+[subject]
+Can you figure out what is in the eax register? 
+Put your answer in the picoCTF flag format: 
+picoCTF{n} where n is the contents of the eax register in the decimal number base. 
+If the answer was 0x11 your flag would be picoCTF{17}.
+---
+[assembly code]
+
+<+0>:     endbr64 
+<+4>:     push   rbp
+<+5>:     mov    rbp,rsp
+<+8>:     mov    DWORD PTR [rbp-0x4],edi
+<+11>:    mov    QWORD PTR [rbp-0x10],rsi
+<+15>:    mov    eax,0x30
+<+20>:    pop    rbp
+<+21>:    ret
+
+---
+[explanation]
+
+<+number>
+- position of the instruction relative to the start of the function
+- number is determined by the programmr or the assembler during the assembly process.
+- offset from the start
+- number : how many bytes
+- <+11> : 11 bytes after the start
+
+# instructions
+## function prologue
+### endbr64
+- part of control-flow enforcement technology
+- marks the beginning of the func
+
+### push rbp
+- saved **the base pointer** of the prev stack frame onto the stack
+- common to preserve the prev frame pointer
+
+### mov rbp, rsp
+- copy the current stack pointer(**rsp**) to the current base pointer (**rbp**) 
+- establishing a new stack frame at the same time
+
+## function body
+### mov dest, source
+- always copy data from a source to a dest
+
+### mov DWORD PTR [rbp-0x4], edi
+- moves value of **edi** register into a local var located at [rbp-0x4]
+- DWORD = DOUBLE WORD(32 bits/4 bytes)
+	- typically for operations involving 32-bit int or pointer
+
+### mov QWORD PTR [rbp-0x10], rsi
+- moves value of **rsi** register into a local var at [rbp-0x10]
+- QWORD = QUAD WORD (64 bits/8 bytes)
+	- typically for operations involving 64-bit int or pointers
+
+### DWORD vs QWORD
+- choice depends on the data size
+- using wrong size can lead to a data corruption or unexpected behavior
+
+### move eax, 0x30
+- sets **eax** register to the hex val 0x30
+- in decimal, the val is 16*3 = 48
+
+## function epilogue
+### pop rbp
+- restores the prev **rbp** from the stack
+- cleaning up the stack frame at the same time
+
+### ret
+- returns control to the calling function
+- returns from the function
+
+# registers
+## eas register
+- general purpose register in x86 architecture
+- used to store return values
+
+## edi register
+- used for **the first int arg** to a func
+
+## rsi register
+- used for the second arg
+
+# CEF(Control-flow enforcement technology)
+## definition
+- security feature introduced by Intel 
+- to help protect against certain attacks, such as ROP(return-oriented programming) and JOP(Jump-oriented programming)
+## main components
+### shadow stack
+- a separate stack which stores return addresses 
+- to ensure that the return address matches the one that was pushed onto the stack
+
+### indirect branch tracking
+- monitors indirect branches (like function pointers)
+-  to ensure they only target valid locations
+- preventing attackers from redirecting execution
+
+# stack vs. stack frame
+## stack
+- region of mem that operates LIFO(last in first out)
+- used for function calls, storing temp data such as params, return addresses, local var.
+- the stack grows downwards in mem
+- each function call creates a new stack frame
+- a stack frame is removed when function returns
+
+## stack frame
+- section of a stack
+- contains all the info needed for a single function calling
+- typically includes: return address, local var for that func, saved registers(**rbp**)
+
+## establishing a new stack frame
+- for a function's execution
+- involves...
+	- saving **prev rbp** onto the stack
+	- setting **current rbp** to the **current rsp**(stack pointer)
+- creating a new frame for the current function means...
+	-  allowing to have its local var, return address 
+	- & preserving the context of the calling function
+
+
+# registers
+## why important
+- essential for CPU operations
+- crucial for low-level programming and system architecture
+
+## GPRs (General purpose registers)
+- for various functions such as arithmetic operations and data storage
+- example: eax, ebx, ecx, edx in x86 architecture
+
+## segment registers
+- to hold segment selectors
+- example: cs, ds, ss, es, fs, gs 
+
+## IP (instruction pointer)
+- to hold the address of the next instruction to be executed
+
+## SP (stack pointer)
+- points to the top of the current stack frame
+
+## BP (base pointer)
+- points to the base of the current stack frame
+- for accessing function param and local var
+
+## status registers/flags
+- to hold flags that indicates status of the CPU or result of the operation
