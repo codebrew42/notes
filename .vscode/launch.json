@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/jin1/coding/notes.git/others_ThisIsAlgorithm/09_graphs/Graph",
-      "program": "/Users/jin1/coding/notes.git/others_ThisIsAlgorithm/09_graphs/Graph/build/Debug/outDebug"
+      "cwd": "/Users/jin1/coding/proj_notes_exams/notes.git/cpp_programming/leetcode1480",
+      "program": "/Users/jin1/coding/proj_notes_exams/notes.git/cpp_programming/leetcode1480/build/Debug/outDebug"
     }
   ]
 }
